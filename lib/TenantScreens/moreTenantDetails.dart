@@ -1,7 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:rental/TenantScreens/tenantPreferences.dart';
+import 'package:rental/widgets/custom_btn.dart';
+import 'package:rental/widgets/default_appBar.dart';
+import 'package:rental/widgets/default_text_field.dart';
 
 class MoreDetails extends StatefulWidget {
   @override
@@ -15,152 +16,69 @@ class _MoreDetailsState extends State<MoreDetails> {
   TextEditingController religion = TextEditingController();
   TextEditingController marital = TextEditingController();
   TextEditingController children = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("More Details"),
-        backgroundColor: Colors.purple,
+      appBar: DefaultAppBar(
+        titleText: 'Complete Your Profile',
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 20,),
-            new TextFormField(
-              controller:education,
-              decoration: new InputDecoration(
-                  labelText: "Education",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in unfocused
-                  ) ,
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in focused
-                  ) ,
-                  border: UnderlineInputBorder(
-                  )
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
               ),
-              keyboardType: TextInputType.text,
-
-            ),
-
-            SizedBox(height: 20,),
-            new TextFormField(
-              controller:profession,
-              decoration: new InputDecoration(
-                  labelText: "Profession",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in unfocused
-                  ) ,
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in focused
-                  ) ,
-                  border: UnderlineInputBorder(
-                  )
+              DefaultTextForm(
+                controller: education,
+                hintText: 'State Education level',
               ),
-              keyboardType: TextInputType.text,
-
-            ),
-
-            SizedBox(height: 20,),
-            new TextFormField(
-              controller:ethnicity,
-              decoration: new InputDecoration(
-                  labelText: "Ethnicity",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in unfocused
-                  ) ,
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in focused
-                  ) ,
-                  border: UnderlineInputBorder(
-                  )
+              SizedBox(
+                height: 20,
               ),
-              keyboardType: TextInputType.text,
-
-            ),
-            SizedBox(height: 20,),
-            new TextFormField(
-              controller:religion,
-              decoration: new InputDecoration(
-                  labelText: "Religion",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in unfocused
-                  ) ,
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in focused
-                  ) ,
-                  border: UnderlineInputBorder(
-                  )
+              DefaultTextForm(
+                controller: profession,
+                hintText: 'Enter Profession',
               ),
-              keyboardType: TextInputType.text,
-
-            ),
-            SizedBox(height: 20,),
-            new TextFormField(
-              controller:marital,
-              decoration: new InputDecoration(
-                  labelText: "Marital Status",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in unfocused
-                  ) ,
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in focused
-                  ) ,
-                  border: UnderlineInputBorder(
-                  )
+              SizedBox(
+                height: 20,
               ),
-              keyboardType: TextInputType.text,
-
-            ),
-            SizedBox(height: 20,),
-            SizedBox(height: 20,),
-            new TextFormField(
-              controller:children,
-              decoration: new InputDecoration(
-                  labelText: "Children",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in unfocused
-                  ) ,
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                    //  when the TextFormField in focused
-                  ) ,
-                  border: UnderlineInputBorder(
-                  )
+              DefaultTextForm(
+                controller: ethnicity,
+                hintText: 'Enter Ethnicity',
               ),
-              keyboardType: TextInputType.text,
-
-            ),
-            SizedBox(height: 20,),
-            ButtonTheme( minWidth: 500,
-              child: RaisedButton(onPressed:(){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>TenantPreferences(
-
-                        )));
-              },
-                color: Colors.purple,
-                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                child: Text("Done",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13)) ,),
-            ),
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              DefaultTextForm(
+                  controller: religion, hintText: 'Enter Religous distinction'),
+              SizedBox(
+                height: 20,
+              ),
+              DefaultTextForm(
+                controller: marital,
+                hintText: 'Enter Marital status',
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              DefaultTextForm(
+                controller: children,
+                hintText: 'Enter Number of Children',
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              DefaultButton(
+                  press: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TenantPreferences())),
+                  text: 'Submit'),
+            ],
+          ),
         ),
       ),
     );

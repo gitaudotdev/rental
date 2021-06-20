@@ -1,8 +1,9 @@
-
-
-
 import 'package:flutter/material.dart';
-import 'package:rental/TenantScreens/availableHouses.dart';
+import 'package:rental/utils/constants.dart';
+import 'package:rental/screens/HouseScreen/house_screen.dart';
+import 'package:rental/widgets/custom_btn.dart';
+import 'package:rental/widgets/default_appBar.dart';
+import 'package:rental/widgets/sticky_label.dart';
 
 class TenantPreferences extends StatefulWidget {
   @override
@@ -12,266 +13,86 @@ class TenantPreferences extends StatefulWidget {
 class _TenantPreferencesState extends State<TenantPreferences> {
   bool tv = false;
   bool stereo = false;
-  bool wifi= false;
+  bool wifi = false;
   bool car = false;
   bool bicycle = false;
   bool babyCarriage = false;
-  bool cigarettes = false;
-  bool weed =false;
+  bool weed = false;
   bool hooker = false;
+  bool cigarettes = false;
+
+  final Map<String, bool> preferences = {
+    'tv': false,
+    'stereo': false,
+    'wifi': false,
+    'car': false,
+    'bicycle': false,
+    'baby Carriage': false,
+    'Weed': false,
+    'hooker': false,
+    'cigarettes': false
+  };
+
+  final List<String> extrasCategories = [
+    'Media',
+    'Children',
+    'Vices',
+  ];
+
+  var extras = [];
+  getExtrasList() {
+    preferences.forEach((key, value) {
+      if (value == true) {
+        extras.add(key);
+      }
+    });
+    print(extras);
+    extras.clear(); //clear array after submit
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Tenant Preferences"),
-        backgroundColor: Colors.purple,
+      appBar: DefaultAppBar(
+        titleText: 'Your Extras',
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 20,),
-          Text("Media" ,
-              style: TextStyle(
-                  color: Colors.purple,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20)) ,
-          Row(
-            children: [
-              SizedBox(width: 10,),
-              Text("Stereo System",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)),
-              SizedBox(width: 20,),
-              Switch(
-                      value: stereo,
-                      onChanged: (value){
-                        setState(() {
-                          stereo=value;
-                          print(stereo);
-                        });
-                      },
-                      activeTrackColor: Colors.grey,
-                      activeColor: Colors.purple,
-                    ),
-            ],
+          SizedBox(
+            height: 20,
           ),
-          Row(
-            children: [
-              SizedBox(width: 10,),
-              Text("Wifi",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)),
-              SizedBox(width: 20,),
-              Switch(
-                value: wifi,
-                onChanged: (value){
+          StickyLabel(
+            labelText: 'Media',
+          ),
+          Expanded(
+            child: ListView(
+                children: preferences.keys.map((String key) {
+              return CheckboxListTile(
+                title: Text(key.toUpperCase(),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w500)),
+                value: preferences[key],
+                activeColor: Colors.blue,
+                checkColor: btnColor,
+                onChanged: (bool value) {
                   setState(() {
-                   wifi=value;
-                    print(wifi);
+                    preferences[key] = value;
                   });
                 },
-                activeTrackColor: Colors.grey,
-                activeColor: Colors.purple,
-              ),
-            ],
+              );
+            }).toList()),
           ),
-          Row(
-            children: [
-              SizedBox(width: 10,),
-              Text("TV",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)),
-              SizedBox(width: 20,),
-
-              Switch(
-                value: tv,
-                onChanged: (value){
-                  setState(() {
-                    tv=value;
-                    print(tv);
-                  });
-                },
-                activeTrackColor: Colors.grey,
-                activeColor: Colors.purple,
-              ),
-            ],
-          ),
-          Divider(color: Colors.purple,),
-          SizedBox(height: 20,),
-          Text("Parking" ,
-              style: TextStyle(
-                  color: Colors.purple,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20)) ,
-
-          Row(
-            children: [
-              SizedBox(width: 10,),
-              Text("Car",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)),
-              SizedBox(width: 20,),
-              Switch(
-                value: car,
-                onChanged: (value){
-                  setState(() {
-                    car=value;
-                    print(car);
-                  });
-                },
-                activeTrackColor: Colors.grey,
-                activeColor: Colors.purple,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              SizedBox(width: 10,),
-              Text("Bicycle",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)),
-              SizedBox(width: 20,),
-              Switch(
-                value: bicycle,
-                onChanged: (value){
-                  setState(() {
-                    bicycle=value;
-                    print(bicycle);
-                  });
-                },
-                activeTrackColor: Colors.grey,
-                activeColor: Colors.purple,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              SizedBox(width: 10,),
-              Text("Baby Carriage",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)),
-              SizedBox(width: 20,),
-              Switch(
-                value: babyCarriage,
-                onChanged: (value){
-                  setState(() {
-                    babyCarriage=value;
-                    print(babyCarriage);
-                  });
-                },
-                activeTrackColor: Colors.grey,
-                activeColor: Colors.purple,
-              ),
-            ],
-          ),
-          Divider(color: Colors.purple,),
-          SizedBox(height: 20,),
-          Text("Smokers" ,
-              style: TextStyle(
-                  color: Colors.purple,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20)) ,
-
-          Row(
-            children: [
-              SizedBox(width: 10,),
-              Text("Cigarettes",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)),
-              SizedBox(width: 20,),
-              Switch(
-                value: cigarettes,
-                onChanged: (value){
-                  setState(() {
-                    cigarettes=value;
-                    print(cigarettes);
-                  });
-                },
-                activeTrackColor: Colors.grey,
-                activeColor: Colors.purple,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              SizedBox(width: 10,),
-              Text("Weed",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)),
-              SizedBox(width: 20,),
-              Switch(
-                value: weed,
-                onChanged: (value){
-                  setState(() {
-                    weed=value;
-                    print(weed);
-                  });
-                },
-                activeTrackColor: Colors.grey,
-                activeColor: Colors.purple,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              SizedBox(width: 10,),
-              Text("Hookah",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)),
-              SizedBox(width: 20,),
-              Switch(
-                value: hooker,
-                onChanged: (value){
-                  setState(() {
-                    hooker=value;
-                    print(hooker);
-                  });
-                },
-                activeTrackColor: Colors.grey,
-                activeColor: Colors.purple,
-              ),
-            ],
-          ),
-
-          ButtonTheme( minWidth: 500,
-            child: RaisedButton(onPressed:(){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>HousesPage(
-
-                      )));
+          DefaultButton(
+            text: 'Finish',
+            press: () => {
+              getExtrasList(),
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HousesPage()))
             },
-              color: Colors.purple,
-              shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-              child: Text("Done",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13)) ,),
           ),
-
         ],
-
       ),
-backgroundColor: Colors.deepPurple[50],
     );
   }
 }

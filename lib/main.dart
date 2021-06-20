@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+
+import 'package:rental/utils/constants.dart';
 import 'package:rental/firstPage.dart';
+import 'package:rental/screens/SignUp/sign_up.dart';
+
+import 'package:rental/utils/utils.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: FirstPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            appBarTheme: appBarTheme(),
+            inputDecorationTheme: inputDecoration(),
+            textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white)),
+            scaffoldBackgroundColor: primaryColor),
+        home: SignUpPage());
   }
 }
-
-
