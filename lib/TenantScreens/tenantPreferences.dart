@@ -84,6 +84,7 @@ class _TenantPreferencesState extends State<TenantPreferences> {
             }).toList()),
           ),
           DefaultButton(
+            padding: 15,
             text: 'Finish',
             press: () => {
               getExtrasList(),

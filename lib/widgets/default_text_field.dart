@@ -5,24 +5,19 @@ class DefaultTextForm extends StatelessWidget {
     Key key,
     @required this.controller,
     @required this.hintText,
+    this.keyboardType,
   }) : super(key: key);
 
   final TextEditingController controller;
   final String hintText;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.0),
-      decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.all(Radius.circular(30))),
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-            enabledBorder: InputBorder.none, hintText: hintText),
-        keyboardType: TextInputType.text,
-      ),
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(hintText: hintText),
+      keyboardType: keyboardType == null ? TextInputType.text : keyboardType,
     );
   }
 }

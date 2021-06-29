@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rental/TenantScreens/moreTenantDetails.dart';
-import 'package:rental/utils/constants.dart';
 import 'package:rental/widgets/custom_btn.dart';
 import 'package:rental/widgets/default_text_field.dart';
 
@@ -69,6 +68,7 @@ class _BodyState extends State<Body> {
               height: 20,
             ),
             DefaultButton(
+              padding: 15,
                 press: () => Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => MoreDetails())),
                 text: 'Continue'),

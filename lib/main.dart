@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:rental/utils/constants.dart';
-import 'package:rental/firstPage.dart';
 import 'package:rental/screens/SignUp/sign_up.dart';
 
 import 'package:rental/utils/utils.dart';

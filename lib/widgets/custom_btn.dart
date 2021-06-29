@@ -11,18 +11,19 @@ class DefaultButton extends StatelessWidget {
     this.textColor,
     this.height,
     this.child,
+    @required this.padding,
   }) : super(key: key);
 
   final Color color, textColor;
   final Function press;
-  final double width, height;
+  final double width, height, padding;
   final String text;
   final child;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding: EdgeInsets.all(padding),
       child: SizedBox(
         width: width != null ? width : double.infinity,
         height: height != null ? height : 56,

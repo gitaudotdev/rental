@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rental/TenantScreens/housedetails.dart';
 import 'package:rental/screens/HouseDetails/house_details.dart';
+import 'package:rental/screens/Uploads/uploads.dart';
+import 'package:rental/widgets/custom_btn.dart';
 
 class HouseCard extends StatelessWidget {
   const HouseCard({
@@ -13,11 +16,11 @@ class HouseCard extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HouseDetailsPage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => AboutHouse()));
           },
           child: Container(
-            height: 300,
+            height: 350,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 image: DecorationImage(
@@ -38,8 +41,7 @@ class HouseCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.location_on,
-                        color: Colors.white, size: 15),
+                    Icon(Icons.location_on, color: Colors.white, size: 15),
                     Text(
                       "Kapsabet",
                       style: TextStyle(
@@ -85,6 +87,15 @@ class HouseCard extends StatelessWidget {
                     )
                   ],
                 ),
+                DefaultButton(
+                    press: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateSpace()));
+                    },
+                    padding: 10,
+                    text: 'Send Message'),
               ],
             ),
           ),

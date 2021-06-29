@@ -1,19 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
+import 'package:rental/model/houses.dart';
+import 'package:rental/screens/HouseDetails/components/about_landlord.dart';
+import 'package:rental/screens/HouseDetails/components/about_space.dart';
 import 'package:rental/screens/HouseScreen/components/bottom_nav.dart';
 
 class HouseDetailsPage extends StatefulWidget {
-  const HouseDetailsPage({ Key key }) : super(key: key);
+ // final Apartment apartment;
+
+ HouseDetailsPage();
 
   @override
   _HouseDetailsPageState createState() => _HouseDetailsPageState();
 }
 
-class _HouseDetailsPageState extends State<HouseDetailsPage> {
+class _HouseDetailsPageState extends State<HouseDetailsPage>
+    with SingleTickerProviderStateMixin {
+ // final Apartment apartment;
+  var isLoading = false;
+  final List _pages = [AboutLandlord(), AboutSpace()];
+
+  TabController _tabController;
+
+  _HouseDetailsPageState();
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: _pages.length, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
-      backgroundColor: Colors.deepPurple[50],
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: Text(
@@ -21,10 +39,18 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Body(),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrollable) {
+          return [
+            //SliverPersistentHeader(delegate: delegate)
+          ];
+        },
+        body: TabBarView(
+            controller: _tabController,
+            children: _pages.map<Widget>((page) => page).toList()),
+      ),
       bottomNavigationBar: DefaultNav(),
     );
- 
   }
 }
 

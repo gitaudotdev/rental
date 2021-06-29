@@ -72,6 +72,7 @@ class _MoreDetailsState extends State<MoreDetails> {
                 height: 20,
               ),
               DefaultButton(
+                padding: 15,
                   press: () => Navigator.push(
                       context,
                       MaterialPageRoute(

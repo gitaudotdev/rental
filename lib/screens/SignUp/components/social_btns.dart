@@ -13,6 +13,7 @@ class SocialBtns extends StatelessWidget {
       children: [
         DefaultButton(
           press: () {},
+          padding: 15,
           child: Row(
             children: [
               Icon(
@@ -32,6 +33,7 @@ class SocialBtns extends StatelessWidget {
         ),
         DefaultButton(
           press: () {},
+          padding: 15,
           color: Colors.white,
           child: Row(
             children: [

@@ -42,3 +42,5 @@ OutlineInputBorder outlineInputBorder() {
       borderRadius: BorderRadius.circular(15),
       borderSide: BorderSide(color: textColor));
 }
+
+const String base_url = "localhost:1337/";

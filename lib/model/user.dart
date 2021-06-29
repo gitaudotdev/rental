@@ -1,43 +1,45 @@
-class UserModel {
-  String uid;
+import 'model.dart';
+
+class User extends Model {
+  static final table = 'user';
+
+  int id;
+  String username;
   String email;
-  String photoUrl;
-  String name;
-  String phone;
-  String code;
-  bool isCodeValid;
-  bool isTenant;
+  bool tenant;
+  String token;
+  String profileImg;
 
-  UserModel(
-      {this.uid,
+  User(
+      {this.id,
+      this.username,
       this.email,
-      this.photoUrl,
-      this.name,
-      this.phone,
-      this.code,
-      this.isCodeValid,this.isTenant});
+      this.token,
+      this.tenant,
+      this.profileImg});
 
-  Map toMap(UserModel user) {
-    var data = Map<String, dynamic>();
-    data['uid'] = user.uid;
-    data['email'] = user.email;
-    data['photoUrl'] = user.photoUrl;
-    data['displayName'] = user.name;
-    data['phone'] = user.phone;
-    data['code'] = user.code;
-    data['isCodeValid'] = user.isCodeValid;
-    data['isTenant'] = user.isTenant;
-    return data;
+  static User fromMap(Map<String, dynamic> json) {
+   return User(
+        id: json['id'],
+        username: json['username'],
+        email: json['email'],
+        tenant: json['tenant'],
+        token: json['token'],
+        profileImg: json['profile_img']);
   }
 
-  UserModel.fromMap(Map<String, dynamic> mapData) {
-    this.uid = mapData['uid'];
-    this.email = mapData['email'];
-    this.photoUrl = mapData['photourl'];
-    this.name = mapData['displayName'];
-    this.phone = mapData['phone'];
-    this.code = mapData['code'];
-    this.isCodeValid = mapData['isCodeValid'];
-    this.isTenant = mapData['isTenant'];
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> data = {
+      'id': id,
+      'username': username,
+      'email': email,
+      'tenant': tenant,
+      'token': token,
+      'profile_img': profileImg
+    };
+    if (id != null) {
+      data['id'] = id;
+    }
+    return data;
   }
 }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:rental/screens/Landlord/landord_home.dart';
 import 'package:rental/utils/constants.dart';
-
-
 
 class DefaultNav extends StatelessWidget {
   const DefaultNav({
@@ -35,7 +34,12 @@ class DefaultNav extends StatelessWidget {
             title: Text("")),
         BottomNavigationBarItem(
             icon: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LandlordHomePage()));
+              },
               child: Column(
                 children: <Widget>[
                   Icon(

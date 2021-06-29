@@ -168,7 +168,7 @@ class _UploadHouseState extends State<UploadHouse> {
                     SizedBox(
                       height: 20,
                     ),
-                    DefaultButton(press: () {}, text: 'Upload')
+                    DefaultButton(press: () {}, text: 'Upload', padding: 15)
                   ],
                 ),
               ),
